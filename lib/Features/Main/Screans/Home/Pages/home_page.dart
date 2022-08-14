@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/Features/Main/Screans/Home/Pages/widgets/pkmItemWidget.dart';
 import 'package:pokedex/Features/Main/Screans/Infos/Container/aboutContainer.dart';
 import 'package:pokedex/common/models/pokemon.dart';
 
@@ -11,14 +12,38 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView.builder(
-      itemCount: list.length,
-      itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          title: Text(list[index].name),
-          onTap: onItemTap('/about', ArgumentsInfo(name: list[index].name)),
-        );
-      },
-    ));
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Text(
+            'Pokedex',
+            style: TextStyle(color: Colors.black, fontSize: 25),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.black,
+                  )),
+            )
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: GridView.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 14,
+            mainAxisSpacing: 14,
+            children: list
+                .map((e) => PkmItem(
+                      pokemon: e,
+                      onTap: onItemTap,
+                    ))
+                .toList(),
+          ),
+        ));
   }
 }

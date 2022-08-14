@@ -8,8 +8,8 @@ import '../../../../../common/models/pokemon.dart';
 import '../../../../../common/repositories/pkm_repository.dart';
 
 class ArgumentsInfo {
-  ArgumentsInfo({required this.name});
-  final String name;
+  ArgumentsInfo({required this.pokemon});
+  final Pokemon pokemon;
 }
 
 class AboutContainer extends StatelessWidget {
@@ -27,7 +27,10 @@ class AboutContainer extends StatelessWidget {
           return LoandingPatern();
         } else if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
-          return AboutPage(name: arguments.name);
+          return AboutPage(
+            pokemon: arguments.pokemon,
+            list: snapshot.data!,
+          );
         } else if (snapshot.hasError) {
           return ErrorPatern(
             error: (snapshot.error as FailOnTry).message!,
