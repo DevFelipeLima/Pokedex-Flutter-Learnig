@@ -14,10 +14,14 @@ class ArgumentsInfo {
 
 class AboutContainer extends StatelessWidget {
   const AboutContainer(
-      {Key? key, required this.repository, required this.arguments})
+      {Key? key,
+      required this.repository,
+      required this.arguments,
+      required this.onBack})
       : super(key: key);
   final IPkmRepository repository;
   final ArgumentsInfo arguments;
+  final VoidCallback onBack;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Pokemon>>(
@@ -30,6 +34,7 @@ class AboutContainer extends StatelessWidget {
           return AboutPage(
             pokemon: arguments.pokemon,
             list: snapshot.data!,
+            onBack: onBack,
           );
         } else if (snapshot.hasError) {
           return ErrorPatern(

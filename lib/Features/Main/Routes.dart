@@ -29,8 +29,10 @@ class PkdxRoute extends StatelessWidget {
         } else if (settings.name == '/about') {
           return MaterialPageRoute(builder: (context) {
             return AboutContainer(
-                repository: repository,
-                arguments: (settings.arguments) as ArgumentsInfo);
+              repository: repository,
+              arguments: (settings.arguments) as ArgumentsInfo,
+              onBack: () => Navigator.of(context).pop(),
+            );
           });
         } //Parametro para rota de informações sobre o pokemon.
       },

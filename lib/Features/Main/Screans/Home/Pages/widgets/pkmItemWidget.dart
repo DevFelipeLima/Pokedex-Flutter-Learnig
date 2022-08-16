@@ -23,7 +23,7 @@ class PkmItem extends StatelessWidget {
               padding: const EdgeInsets.all(6),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(pokemon.name,
                       style: TextStyle(

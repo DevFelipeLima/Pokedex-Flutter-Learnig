@@ -1,38 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/Features/Main/Screans/Infos/Pages/widgets/aboutPkmWidget.dart';
+import 'package:pokedex/Features/Main/Screans/Infos/Pages/widgets/aboutWidget.dart';
 import 'package:pokedex/common/models/pokemon.dart';
 
 class AboutPage extends StatelessWidget {
-  const AboutPage({Key? key, required this.pokemon, required this.list})
-      : super(key: key);
+  const AboutPage({
+    Key? key,
+    required this.pokemon,
+    required this.list,
+    required this.onBack,
+  }) : super(key: key);
   final Pokemon pokemon;
   final List<Pokemon> list;
+  final VoidCallback onBack;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(pokemon.name),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 32),
-                child: ListView(
-                  children: list
-                      .map((e) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(e.name)))
-                      .toList(),
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
-            )
-          ],
-        ),
+      body: Stack(
+        children: [
+          AboutWidget(
+            pokemon: pokemon,
+            onBack: onBack,
+          ),
+          AboutPkmWidget(pokemon: pokemon)
+        ],
       ),
     );
   }
