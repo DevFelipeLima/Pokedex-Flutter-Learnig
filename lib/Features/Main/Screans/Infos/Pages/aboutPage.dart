@@ -9,10 +9,13 @@ class AboutPage extends StatelessWidget {
     required this.pokemon,
     required this.list,
     required this.onBack,
+    required this.controller,
   }) : super(key: key);
+
   final Pokemon pokemon;
   final List<Pokemon> list;
   final VoidCallback onBack;
+  final PageController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,11 @@ class AboutPage extends StatelessWidget {
             pokemon: pokemon,
             onBack: onBack,
           ),
-          AboutPkmWidget(pokemon: pokemon)
+          AboutPkmWidget(
+            pokemon: pokemon,
+            list: list,
+            controller: controller,
+          )
         ],
       ),
     );
