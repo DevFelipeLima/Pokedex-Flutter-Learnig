@@ -4,15 +4,21 @@ import 'package:pokedex/Features/Main/Screans/Infos/Container/aboutContainer.dar
 import 'package:pokedex/common/models/pokemon.dart';
 
 class PkmItem extends StatelessWidget {
-  const PkmItem({Key? key, required this.pokemon, required this.onTap})
+  const PkmItem(
+      {Key? key,
+      required this.pokemon,
+      required this.onTap,
+      required this.index})
       : super(key: key);
   final Pokemon pokemon;
   final Function(String, ArgumentsInfo) onTap;
+  final int index;
 //minha opção deixar a imagem entre o tipo e o nome, e nao colocar o numero.
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap('/about', ArgumentsInfo(pokemon: pokemon)),
+      onTap: () =>
+          onTap('/about', ArgumentsInfo(pokemon: pokemon, index: index)),
       child: Stack(
         children: [
           Container(
@@ -47,10 +53,12 @@ class PkmItem extends StatelessWidget {
             ),
           ),
           (Positioned(
-            bottom: 10,
-            right: 2,
-            child: Image.network(pokemon.image),
-          ))
+              bottom: 10,
+              right: 2,
+              child: Image.network(
+                pokemon.image,
+                height: 120,
+              )))
         ],
       ),
     );
