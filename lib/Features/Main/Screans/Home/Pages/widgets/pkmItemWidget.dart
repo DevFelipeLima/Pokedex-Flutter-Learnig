@@ -35,7 +35,7 @@ class PkmItem extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 14)),
+                          fontSize: 16)),
                   Flexible(
                       child: Container(
                     height: 100,

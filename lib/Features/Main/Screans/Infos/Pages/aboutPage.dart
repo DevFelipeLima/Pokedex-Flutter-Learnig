@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/Features/Main/Screans/Home/Pages/widgets/TypePkmItemWidget.dart';
 import 'package:pokedex/Features/Main/Screans/Infos/Pages/widgets/aboutPkmWidget.dart';
 import 'package:pokedex/Features/Main/Screans/Infos/Pages/widgets/aboutAppBarWidget.dart';
 import 'package:pokedex/common/models/pokemon.dart';
@@ -44,12 +45,44 @@ class AboutPage extends StatelessWidget {
                     color: pokemon.baseColor,
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20))),
-                  ),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20))),
+                      child: ListView(
+                        children: [
+                          Column(
+                            children: pokemon.type
+                                .map((e) => TypePkmItem(
+                                      name: e,
+                                    ))
+                                .toList(),
+                          ),
+                          Text(
+                            pokemon.weight,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            pokemon.height,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Column(
+                            children: pokemon.weaknesses
+                                .map((e) => TypePkmItem(
+                                      name: e,
+                                    ))
+                                .toList(),
+                          )
+                        ],
+                      )),
                 ],
               ),
             ),

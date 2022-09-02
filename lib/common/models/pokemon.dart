@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Pokemon {
-  final String name;
   final List<String> type;
+  final List<String> weaknesses;
+  final String name;
   final int id;
   final String num;
+  final String weight;
+  final String height;
 
   factory Pokemon.fromMap(Map<String, dynamic> json) {
     return Pokemon(
@@ -12,7 +15,12 @@ class Pokemon {
       id: json['id'],
       //pega o testo do json dentro do type e transforma e retorna uma lista de strings.
       type: (json['type'] as List<dynamic>).map((e) => e as String).toList(),
+      weaknesses: (json['weaknesses'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       num: json['num'],
+      height: json['height'],
+      weight: json['weight'],
     );
   }
   Color? get baseColor => _color(type: type[0]);
@@ -21,6 +29,9 @@ class Pokemon {
       'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png';
 
   Pokemon({
+    required this.weaknesses,
+    required this.weight,
+    required this.height,
     required this.name,
     required this.id,
     required this.num,
